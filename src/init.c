@@ -93,6 +93,7 @@ t_libft_test	fun_test_table[] = {
 	{"ft_strnew", test_ft_strnew, 3, 0},
 	{"ft_strdel", test_ft_strdel, 3, 0},
 	{"ft_strclr", test_ft_strclr, 3, 0},
+	{"ft_strcapitalize", test_ft_strcapitalize, 3, 0},
 	{"ft_striter", test_ft_striter, 3, 0},
 	{"ft_striteri", test_ft_striteri, 3, 0},
 	{"ft_strmap", test_ft_strmap, 3, 0},

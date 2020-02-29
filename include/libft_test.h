@@ -327,6 +327,7 @@ void			test_ft_memdel(void);
 void			test_ft_strnew(void);
 void			test_ft_strdel(void);
 void			test_ft_strclr(void);
+void			test_ft_strcapitalize(void);
 void			test_ft_striter(void);
 void			test_ft_striteri(void);
 void			test_ft_strmap(void);
