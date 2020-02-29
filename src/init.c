@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alelievr <alelievr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oadhesiv <secondfry+school21@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created  2015/11/17 17:30:13 by alelievr          #+#    #+#             */
-/*   Updated  2015/12/23 20:10:29 by alelievr         ###   ########.fr       */
+/*   Created: 2015/11/17 17:30:13 by alelievr          #+#    #+#             */
+/*   Updated: 2020/03/02 12:57:42 by oadhesiv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ t_libft_test	fun_test_table[] = {
 	{"ft_lstiter", test_ft_lstiter, 3, 0},
 	{"ft_lstmap", test_ft_lstmap, 3, 0},
 
+	{"ft_strcapitalize", test_ft_strcapitalize, 3, 0},
 	{"ft_islower", test_ft_islower, 3, 0},
 	{"ft_isupper", test_ft_isupper, 3, 0},
 	{"ft_isnumber", test_ft_isnumber, 3, 0},

@@ -5111,6 +5111,35 @@ void            test_ft_strclr(void){
 }
 
 ////////////////////////////////
+//      ft_strcapitalize      //
+////////////////////////////////
+
+void test_ft_strcapitalize_basic(void *ptr)
+{
+    void (*ft_strcapitalize)(char *) = ptr;
+    SET_EXPLANATION("your strclr does not set to 0 the string");
+
+    SANDBOX_RAISE(
+    char b[] = "strcapItalize test 332 !\r\n";
+    char n[] = "STRCAPITALIZE TEST 332 !\r\n";
+    size_t size = strlen(b);
+    ft_strcapitalize(b);
+    if (!memcmp(b, n, size))
+    {
+        exit(TEST_SUCCESS);
+    }
+    SET_DIFF_INT(0, memcmp(b, n, size));
+    exit(TEST_FAILED);
+    );
+
+}
+
+void test_ft_strcapitalize(void)
+{
+    add_fun_subtest(test_ft_strcapitalize_basic);
+}
+
+////////////////////////////////
 //         ft_striter         //
 ////////////////////////////////
 
